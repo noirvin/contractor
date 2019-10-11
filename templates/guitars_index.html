@@ -2,12 +2,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Guitars</h1>
+<h1>Slap Reviews</h1>
 
 <div class='row'>
     {% for guitar in guitars %}
         <div class='col-md-3'>
-            <small>{{ guitar.picture }}</small>
+            <img src="{{ guitar.picture }}" style="width: 100%" alt="guitPic">
             <h2><a href='/guitars/{{ guitar._id }}'>{{ guitar.name }}</a></h2>
         </div>
     {% endfor %}
