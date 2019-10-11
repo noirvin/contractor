@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- templates/partials/review_form.html -->
+<form action='/guitars/{{ guitar_id }}/reviews/{{ review._id }}' method='POST' style="padding-left: 50px; padding-right: 50px">
+    <input type='hidden' value='{{ review._id }}' name='review_id'/>
+    <input type='hidden' value='{{ guitar_id }}' name='guitar_id'/>
+    <fieldset>
+        <legend>Edit a Review</legend>
+        <!-- TITLE -->
+        <div class='form-group'>
+            <label for='review-title'>Title</label><br>
+            <input class='form-control' id='review-title' type='text' name='title' placeholder='Title'/>
+        </div>
+
+        <div class='form-group'>
+            <label for='review-name'>Name</label>
+            <input class='form-control' id='comment-name' type='text' name='name' placeholder='Your Name'/>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class='form-group'>
+            <label for='comment-content'>Description</label><br>
+            <textarea class='form-control'
+                id='comment-content'
+                name='content'
+                rows='10'
+                placeholder='Your comment...'></textarea>
+        </div>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <div class='form-group'>
+        <button class='btn btn-primary' type='submit'>Save Comment</button>
+    </div>
+</form>
+
+
+{% endblock content%}

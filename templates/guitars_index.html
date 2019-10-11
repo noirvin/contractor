@@ -1,0 +1,15 @@
+<!-- templates/guitars_index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Guitars</h1>
+
+<div class='row'>
+    {% for guitar in guitars %}
+        <div class='col-md-3'>
+            <small>{{ guitar.picture }}</small>
+            <h2><a href='/guitars/{{ guitar._id }}'>{{ guitar.name }}</a></h2>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
