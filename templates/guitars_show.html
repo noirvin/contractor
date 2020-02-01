@@ -7,12 +7,12 @@
     <div class='col-sm-6 col-sm-offset-3'>
         <h1>{{guitar.name}}</h1>
 
-        <h2>{{ guitar.picture }}</h2>
+        <img src="{{ guitar.picture }}" style="width: 100%" alt="guitPic">
 
 
         <!-- review form -->
         {% include 'partials/review_form.html' %}
-        {% include 'partials/review_form.html' %}
+        
 
     <hr>
 
