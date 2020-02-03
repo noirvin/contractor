@@ -11,15 +11,22 @@
 
 
         <!-- review form -->
-        {% include 'partials/review_form.html' %}
-        
+        <form action="/guitars/reviews/new" method="POST">
+            <input type='hidden' value='{{ guitar._id }}' name='guitar_id'/>
+            {% include 'partials/review_form.html' %}
+        </form>
+
 
     <hr>
 
+    <div class = 'row'>
+            <div class='col-sm-6 col-sm-offset-3'>
     <!-- Show Reviews -->
-    {% for review in reviews %}
-        {% include 'partials/review.html' %}
-    {% endfor %}
+                {% for review in reviews %}
+                    {% include 'partials/review.html' %}
+                {% endfor %}
+            </div>
+    </div>
 
     </div>
 </div>

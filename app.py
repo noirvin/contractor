@@ -8,8 +8,8 @@ client = MongoClient()
 db = client.SlapStore
 guitars = db.guitars
 
-guitars = db.guitars
-comments = db.comments
+
+reviews = db.reviews
 
 slap_reviews = Slap_Store(guitars)
 slap_reviews.show_guitars()
@@ -37,7 +37,7 @@ def guitars_index():
 def guitars_show(guitar_id):
     """Show a single guitar."""
     guitar = guitars.find_one({'_id': ObjectId(guitar_id)})
-    guitar_reviews = guitars.find({'guitar_id': ObjectId(guitar_id)})
+    guitar_reviews = reviews.find({'guitar_id': ObjectId(guitar_id)})
     return render_template('guitars_show.html', guitar=guitar, reviews=guitar_reviews)
 
 @app.route('/guitars/<guitar_id>/reviews/<review_id>/edit')
@@ -59,7 +59,7 @@ def reviews_save(review_id):
     return redirect(url_for('guitars_show', review_id=review_id))
 
 
-@app.route('/guitars/<guitar_id>/reviews', methods=['POST'])
+@app.route('/guitars/reviews/new', methods=['POST'])
 def reviews_new():
     """Submit a new review."""
     review = {
@@ -67,9 +67,14 @@ def reviews_new():
         'content': request.form.get('content'),
         'guitar_id': ObjectId(request.form.get('guitar_id'))
     }
-    print(comment)
+
+    g_id=request.form.get('guitar_id')
+    guitar = guitars.find_one({'_id': ObjectId(g_id)})
+
     review_id = reviews.insert_one(review).inserted_id
-    return redirect(url_for('guitars_show', guitar_id=request.form.get('guitar_id')))
+    rs = reviews.find({'guitar_id': ObjectId(g_id)})
+    #return render_template('guitars_show.html', guitar_id=guitar_id, guitar=guitar, reviews=rs)
+    return redirect(url_for('guitars_show', guitar_id=g_id))
 
 @app.route('/guitars/guitars/<guitar_id>/reviews/<review_id>/delete', methods=['POST'])
 def reviews_delete(review_id):

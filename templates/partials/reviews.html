@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- templates/partials/review_form.html -->
-<form action='/inventory/{{ guitar_id }}/reviews/{{ review._id }}' method='POST' style="padding-left: 50px; padding-right: 50px">
+<form action='/guitars/{{ guitar_id }}/reviews/{{ review._id }}' method='POST' style="padding-left: 50px; padding-right: 50px">
     <input type='hidden' value='{{ review._id }}' name='review_id'/>
     <input type='hidden' value='{{ guitar_id }}' name='guitar_id'/>
     <fieldset>
