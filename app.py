@@ -3,9 +3,11 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
 from guitars_list import *
+import os
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Contractor')
+client = MongoClient(host=f'{host}?retryWrites=false')
+db = client.get_default_database()
 
-client = MongoClient()
-db = client.SlapStore
 guitars = db.guitars
 
 
@@ -87,4 +89,4 @@ def reviews_delete(review_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
