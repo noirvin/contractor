@@ -11,7 +11,7 @@
 
 
         <!-- review form -->
-        <form action="/guitars/reviews/new" method="POST">
+        <form action="/guitars/reviews" method="POST">
             <input type='hidden' value='{{ guitar._id }}' name='guitar_id'/>
             {% include 'partials/review_form.html' %}
         </form>

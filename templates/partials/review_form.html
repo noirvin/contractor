@@ -1,5 +1,6 @@
 <!-- templates/partials/review_form.html -->
-<form action="/guitars/reviews/new" method="post">
+<form action="/guitars/reviews" method="post">
+    <input type='hidden' value='{{guitar._id}}' name='guitar_id'/>
     <fieldset>
         <legend>Add a Review</legend>
         <!-- TITLE -->

@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class='card'>
+    <div class='card-block'>
+        <h2 class = 'card-title'>{{review.subject}}</h2>
 
-    <h2>{{review.subject}}</h2>
+        <p class = 'card-text'>{{review.content}}</p>
 
-    <p>{{review.content}}</p>
+
+        <form method='POST' action='/reviews/{{review._id}}/delete'>
+            <input type='hidden' value='{{guitar._id}}' name='guitar_id'/>
+            <button class='btn btn-link' type='submit'>Delete</button>
+        </form>
+
+            <a href = "/reviews/{{review._id}}/edit">Edit</a>
+
+
+    </div>
+</div>
 
 
 {% endblock %}
